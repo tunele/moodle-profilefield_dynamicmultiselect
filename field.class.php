@@ -18,7 +18,7 @@
  * Multiselect profile field.
  *
  * @package    profilefield_multiselect
- * @copyright  2016 onwards Antonello Moro {http://antonellomoro.it}
+ * @copyright  2016 onwards Antonello Moro {http://antonellomoro.it} based on profilefield_multiselect by Nitin Jain
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

@@ -19,7 +19,7 @@
  * Based on moodle multiselect by Shane Elliot
  *
  * @package   profilefield_dynamicmultiselect
- * @copyright 2016 onwards Antonello Moro {@link http://treagles.it}
+ * @copyright 2016 onwards Antonello Moro {@link http://treagles.it} based on profilefield_multiselect by Nitin Jain
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
