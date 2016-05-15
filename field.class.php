@@ -70,15 +70,13 @@ class profile_field_dynamicmultiselect extends profile_field_base {
         }
 
         // Set the data key.
-        if ($this->data !== NULL) {
+        if ($this->data !== null) {
             $this->data = str_replace("\r", '', $this->data);
             $this->datatmp = explode("\n", $this->data);
-            foreach($this->datatmp as $key => $option1) {
+            foreach ($this->datatmp as $key => $option1) {
                 $this->datakey[] = (int)array_search($option1, $this->options);
             }
         }
-
-
     }
 
     /**
@@ -95,7 +93,7 @@ class profile_field_dynamicmultiselect extends profile_field_base {
      * Overwrites the base class method
      * @param   object   moodleform instance
      */
-    function edit_field_add($mform) {
+    public function edit_field_add($mform) {
         $mform->addElement('select', $this->inputname, format_string($this->field->name), $this->options);
         $mform->getElement($this->inputname)->setMultiple(true);
     }
@@ -104,8 +102,8 @@ class profile_field_dynamicmultiselect extends profile_field_base {
      * Set the default value for this field instance
      * Overwrites the base class method
      */
-    function edit_field_set_default($mform) {
-        if (FALSE !==array_search($this->field->defaultdata, $this->options)){
+    public function edit_field_set_default($mform) {
+        if (false !== array_search($this->field->defaultdata, $this->options)) {
             $defaultkey = (int)array_search($this->field->defaultdata, $this->options);
         } else {
             $defaultkey = '';
@@ -121,16 +119,14 @@ class profile_field_dynamicmultiselect extends profile_field_base {
      * @param   stdClass $datarecord The object that will be used to save the record
      */
     function edit_save_data_preprocess($data, $datarecord) {
-    //print "<pre>";print_r($data);die;
-    $string='';
-        if(is_array($data)){
-         foreach($data as $key) {
-            if(isset($this->options[$key]))
-            {
-                $string .= $this->options[$key]."\r\n";
+        $string='';
+        if(is_array($data)) {
+            foreach($data as $key) {
+                if(isset($this->options[$key])) {
+                    $string .= $this->options[$key]."\r\n";
+                }
             }
-        }		
-        return substr($string,0,-2);
+            return substr($string,0,-2);
         }
         return isset($this->options[$data]) ? $this->options[$data] : NULL;
     }
