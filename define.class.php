@@ -31,7 +31,7 @@
  */
 class profile_define_dynamicmultiselect extends profile_define_base {
 
-    function define_form_specific($form) {
+    public function define_form_specific($form) {
 
         // Param 1 for multiselect type contains the options.
         $form->addElement(
@@ -145,7 +145,7 @@ class profile_define_dynamicmultiselect extends profile_define_base {
         return $err;
     }
 
-    function define_save_preprocess($data) {
+    public function define_save_preprocess($data) {
         $data->param1 = str_replace("\r", '', $data->param1);
 
         return $data;
