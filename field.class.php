@@ -165,7 +165,7 @@ class profile_field_dynamicmultiselect extends profile_field_base {
         $retval = array_search($value, $this->options);
 
         // If value is not found in options then return null, so that it can be handled
-        // later by edit_save_data_preprocess
+        // later by edit_save_data_preprocess.
         if ($retval === false) {
             $retval = null;
         }
