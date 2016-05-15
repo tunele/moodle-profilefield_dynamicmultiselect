@@ -107,7 +107,7 @@ class profile_field_dynamicmultiselect extends profile_field_base {
             $defaultkey = (int)array_search($this->field->defaultdata, $this->options);
         } else {
             $defaultkey = '';
-        }		
+        }
         $mform->setDefault($this->inputname, $defaultkey);
     }
 
@@ -118,17 +118,17 @@ class profile_field_dynamicmultiselect extends profile_field_base {
      * @param   mixed    $data - the key returned from the select input in the form
      * @param   stdClass $datarecord The object that will be used to save the record
      */
-    function edit_save_data_preprocess($data, $datarecord) {
-        $string='';
-        if(is_array($data)) {
-            foreach($data as $key) {
-                if(isset($this->options[$key])) {
+    public function edit_save_data_preprocess($data, $datarecord) {
+        $string = '';
+        if (is_array($data)) {
+            foreach ($data as $key) {
+                if (isset($this->options[$key])) {
                     $string .= $this->options[$key]."\r\n";
                 }
             }
-            return substr($string,0,-2);
+            return substr($string, 0, -2);
         }
-        return isset($this->options[$data]) ? $this->options[$data] : NULL;
+        return isset($this->options[$data]) ? $this->options[$data] : null;
     }
 
     /**
@@ -137,7 +137,7 @@ class profile_field_dynamicmultiselect extends profile_field_base {
      * Overwrites the base class method
      * @param   object   user object
      */
-    function edit_load_user_data($user) {
+    public function edit_load_user_data($user) {
         $user->{$this->inputname} = $this->datakey;
     }
 
@@ -145,7 +145,7 @@ class profile_field_dynamicmultiselect extends profile_field_base {
      * HardFreeze the field if locked.
      * @param   object   instance of the moodleform class
      */
-    function edit_field_set_locked($mform) {
+    public function edit_field_set_locked($mform) {
         if (!$mform->elementExists($this->inputname)) {
             return;
         }
@@ -161,7 +161,7 @@ class profile_field_dynamicmultiselect extends profile_field_base {
      * @param string $value one of the values in menu options.
      * @return int options key for the menu
      */
-    function convert_external_data($value) {
+    public function convert_external_data($value) {
         $retval = array_search($value, $this->options);
 
         // If value is not found in options then return null, so that it can be handled
