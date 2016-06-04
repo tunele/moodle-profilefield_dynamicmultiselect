@@ -31,6 +31,10 @@
  */
 class profile_define_dynamicmultiselect extends profile_define_base {
 
+    /**
+     * Creates the form, adding the required elements
+     * @param $form
+     */
     public function define_form_specific($form) {
 
         // Param 1 for multiselect type contains the options.
@@ -65,8 +69,7 @@ class profile_define_dynamicmultiselect extends profile_define_base {
 
     /**
      * Alter form based on submitted or existing data
-     *
-     * @param moodleform $mform
+     * @param $form
      */
     public function define_after_data(&$form) {
         global $DB;
@@ -145,6 +148,10 @@ class profile_define_dynamicmultiselect extends profile_define_base {
         return $err;
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function define_save_preprocess($data) {
         $data->param1 = str_replace("\r", '', $data->param1);
 
