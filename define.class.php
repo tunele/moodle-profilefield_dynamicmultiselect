@@ -68,7 +68,7 @@ class profile_define_dynamicmultiselect extends profile_define_base {
     }
 
     /**
-     * Alter form based on submitted or existing data
+     * Alter form based on submitted or existing data 
      * @param $form
      */
     public function define_after_data(&$form) {
