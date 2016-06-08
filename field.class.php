@@ -15,12 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ *
  * Multiselect profile field.
  *
- * @package    profilefield_multiselect
- * @copyright  2016 onwards Antonello Moro {http://antonellomoro.it} based on profilefield_multiselect by Nitin Jain
+ * @package   profilefield_dynamicmultiselect
+ * @copyright  2016 onwards Antonello Moro {http://antonellomoro.it}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 
 /**
  * Class profile_field_multiselect
@@ -80,9 +82,9 @@ class profile_field_dynamicmultiselect extends profile_field_base {
     }
 
     /**
-     * Old syntax of class constructor. Deprecated in PHP7.
-     *
-     * @deprecated since Moodle 3.1
+     * deprecated old costructor
+     * @param int $fieldid
+     * @param int $userid
      */
     public function profile_field_menu($fieldid=0, $userid=0) {
         self::__construct($fieldid, $userid);
@@ -91,7 +93,7 @@ class profile_field_dynamicmultiselect extends profile_field_base {
     /**
      * Create the code snippet for this field instance
      * Overwrites the base class method
-     * @param   object   moodleform instance
+     * @param moodleform $mform
      */
     public function edit_field_add($mform) {
         $mform->addElement('select', $this->inputname, format_string($this->field->name), $this->options);
@@ -101,6 +103,7 @@ class profile_field_dynamicmultiselect extends profile_field_base {
     /**
      * Set the default value for this field instance
      * Overwrites the base class method
+     * @param moodleform $mform
      */
     public function edit_field_set_default($mform) {
         if (false !== array_search($this->field->defaultdata, $this->options)) {
@@ -135,7 +138,7 @@ class profile_field_dynamicmultiselect extends profile_field_base {
      * When passing the user object to the form class for the edit profile page
      * we should load the key for the saved data
      * Overwrites the base class method
-     * @param   object   user object
+     * @param stdClass $user
      */
     public function edit_load_user_data($user) {
         $user->{$this->inputname} = $this->datakey;
@@ -143,7 +146,9 @@ class profile_field_dynamicmultiselect extends profile_field_base {
 
     /**
      * HardFreeze the field if locked.
-     * @param   object   instance of the moodleform class
+     * @param moodleform $mform
+     * @throws coding_exception
+     * @throws dml_exception
      */
     public function edit_field_set_locked($mform) {
         if (!$mform->elementExists($this->inputname)) {

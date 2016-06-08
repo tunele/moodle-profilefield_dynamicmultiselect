@@ -15,12 +15,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Dynamic multiselect  profile field definition.
- * Based on moodle multiselect by Shane Elliot
+ *
+ * Multiselect profile field.
  *
  * @package   profilefield_dynamicmultiselect
- * @copyright 2016 onwards Antonello Moro {@link http://treagles.it} based on profilefield_multiselect by Nitin Jain
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2016 onwards Antonello Moro {http://antonellomoro.it}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
@@ -31,6 +31,12 @@
  */
 class profile_define_dynamicmultiselect extends profile_define_base {
 
+    /**
+     * creates the form. adds specific fields.
+     * @param moodleform $form
+     * @throws coding_exception
+     * @throws dml_exception
+     */
     public function define_form_specific($form) {
 
         // Param 1 for multiselect type contains the options.
@@ -65,8 +71,7 @@ class profile_define_dynamicmultiselect extends profile_define_base {
 
     /**
      * Alter form based on submitted or existing data
-     *
-     * @param moodleform $mform
+     * @param moodleform $form
      */
     public function define_after_data(&$form) {
         global $DB;
@@ -145,6 +150,11 @@ class profile_define_dynamicmultiselect extends profile_define_base {
         return $err;
     }
 
+    /**
+     * define_save_preprocess
+     * @param array|stdClass $data
+     * @return array|stdClass
+     */
     public function define_save_preprocess($data) {
         $data->param1 = str_replace("\r", '', $data->param1);
 

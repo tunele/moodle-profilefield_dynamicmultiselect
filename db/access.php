@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Access file for profilefield_dynamicmenu.
+ * Access file for profilefield_dynamicmultiselect
  *
- * @package    profilefield_dynamicmenu
+ * @package    profilefield_dynamicmultiselect
  * @copyright  2016 onwards Antonello Moro {@link http://treagles.it}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

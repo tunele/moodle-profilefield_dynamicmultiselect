@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'profilefield_multiselect', language 'en', branch 'MOODLE_20_STABLE'
+ * Strings for component 'profilefield_dynamicmultiselect', language 'en'
  *
- * @package   profilefield_multiselect
+ * @package   profilefield_dynamicmultiselect
  * @copyright 2016 onwards Antonello Moro  {@link http://antonellomoro.it}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

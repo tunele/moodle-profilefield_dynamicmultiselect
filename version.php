@@ -15,7 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    profilefield
+ * Version information for the dynamicmultiselect profile field.
+ * @package    profilefield_dynamicmultiselect
  * @subpackage menu
  * @copyright  2014 onwards The Digital Group {@link http://thedigitalgroup.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
