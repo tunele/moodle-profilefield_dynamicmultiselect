@@ -79,7 +79,7 @@ class profile_define_dynamicmultiselect extends profile_define_base {
             $sql = $form->getElementValue('param1');
 
             if ($sql) {
-                $rs = $DB->get_records_sql($sql, null, 0, 100); //For this sample set, extract max 100 results.
+                $rs = $DB->get_records_sql($sql, null, 0, 100); // For this sample set, extract max 100 results.
                 $defsample = '';
                 $countdata = count($rs);
                 foreach ($rs as $record) {
