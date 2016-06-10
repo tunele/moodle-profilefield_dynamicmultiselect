@@ -61,6 +61,7 @@ class profile_define_dynamicmultiselect extends profile_define_base {
         $form->addElement('text', 'sql_count_data', get_string('numbersqlvalues', 'profilefield_dynamicmultiselect'));
         $form->setType('sql_count_data', PARAM_RAW);
         $form->hardFreeze('sql_count_data');
+        $form->addHelpButton('sql_count_data', 'numbersqlvalueshelp', 'profilefield_dynamicmultiselect');
         $form->addElement(
             'textarea', 'sql_sample_data', get_string('samplesqlvalues', 'profilefield_dynamicmultiselect'),
             array('rows' => 6, 'cols' => 40)
@@ -79,7 +80,7 @@ class profile_define_dynamicmultiselect extends profile_define_base {
             $sql = $form->getElementValue('param1');
 
             if ($sql) {
-                $rs = $DB->get_records_sql($sql, null, 0, 100); // For this sample set, extract max 100 results.
+                $rs = $DB->get_records_sql($sql, null, 0, 20); // For this sample set, extract max 20 results.
                 $defsample = '';
                 $countdata = count($rs);
                 foreach ($rs as $record) {
