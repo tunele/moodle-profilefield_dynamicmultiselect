@@ -189,7 +189,7 @@ class profile_field_dynamicmultiselect extends profile_field_base {
         global $DB;
         $rs = $DB->get_records_sql($sql);
         $ret = '';
-        foreach($this->datakey as $key) {
+        foreach ($this->datakey as $key) {
             if (array_key_exists($key, $rs)) {
                 $ret .= $rs[$key]->data . "\r\n";
             } else {
