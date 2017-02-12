@@ -53,32 +53,36 @@ class profile_field_dynamicmultiselect extends profile_field_base {
     public function __construct($fieldid=0, $userid=0) {
         // First call parent constructor.
         parent::__construct($fieldid, $userid);
-        $mykey = $fieldid.','.$userid; // It will always work because they are number, so no chance of ambiguity.
-        if (array_key_exists($mykey , self::$acalls)) {
-            $rs = self::$acalls[$mykey];
-        } else {
-            $sql = $this->field->param1;
-            global $DB;
-            $rs = $DB->get_records_sql($sql);
-            self::$acalls[$mykey] = $rs;
-        }
-        $this->options = array();
-        if ($this->field->required) {
-            $this->options[''] = get_string('choose').'...';
-        }
+        // Only if we actually need data.
+        if ($fieldid !== 0 && $userid !== 0) {
+            $mykey = $fieldid.','.$userid; // It will always work because they are number, so no chance of ambiguity.
+            if (array_key_exists($mykey , self::$acalls)) {
+                $rs = self::$acalls[$mykey];
+            } else {
+                $sql = $this->field->param1;
+                global $DB;
+                $rs = $DB->get_records_sql($sql);
+                self::$acalls[$mykey] = $rs;
+            }
+            $this->options = array();
+            if ($this->field->required) {
+                $this->options[''] = get_string('choose').'...';
+            }
 
-        foreach ($rs as $key => $option) {
-            $this->options[format_string($key)] = format_string($option->data); // Multilang formatting.
-        }
+            foreach ($rs as $key => $option) {
+                $this->options[format_string($key)] = format_string($option->data); // Multilang formatting.
+            }
 
-        // Set the data key.
-        if ($this->data !== null) {
-            $this->data = str_replace("\r", '', $this->data);
-            $this->datatmp = explode("\n", $this->data);
-            foreach ($this->datatmp as $key => $option1) {
-                $this->datakey[] = (int)array_search($option1, $this->options);
+            // Set the data key.
+            if ($this->data !== null) {
+                $this->data = str_replace("\r", '', $this->data);
+                $this->datatmp = explode("\n", $this->data);
+                foreach ($this->datatmp as $key => $option1) {
+                    $this->datakey[] = (int)array_search($option1, $this->options);
+                }
             }
         }
+
     }
 
     /**
@@ -175,6 +179,25 @@ class profile_field_dynamicmultiselect extends profile_field_base {
             $retval = null;
         }
         return $retval;
+    }
+
+    /**
+     * Display the data for this field.
+     */
+    public function display_data() {
+        $sql = $this->field->param1;
+        global $DB;
+        $rs = $DB->get_records_sql($sql);
+        $ret = '';
+        foreach($this->datakey as $key) {
+            if (array_key_exists($key, $rs)) {
+                $ret .= $rs[$key]->data . "\r\n";
+            } else {
+                $ret .= 'N/A' . "\r\n";
+            }
+
+        }
+        return $ret;
     }
 }
 
